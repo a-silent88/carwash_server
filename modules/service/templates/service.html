@@ -1,0 +1,48 @@
+{% for service in services %}
+                        
+{% if service.pk != 0 %}
+<tr>
+    <td data-pk="{{ service.pk }}">{{ service.code }}</td>
+    <td>{{ service.name }}</td>
+    <td>{{ service.unit }}</td>
+    <td>{{ service.price }} руб.</td>
+    <td>
+        <a href="/services/edit/{{service.pk}}" data-get='form' data-formId='form_service' style="color: #000" id="" class="" s><i class="far fa-edit" title="Редактировать"></i></a>
+        <a href="#" style="color: red" data-item_pk="{{service.pk}}"class="open_modal-del"><i class="far fa-trash-alt" title="Удалить"></i></a>
+        <div id="modal-del-{{service.pk}}" class="modal-del">
+            Выходите удалить клиента?
+            <div class="action">
+                <a href="/services/del/{{service.pk}}" id='{{service.pk}}' style="background: red; color: #fff;">да</a>
+                <a href="#" class="no-del-{{service.pk}}" style="background: #7ecaa6; color: #fff;">нет</a>
+            </div>
+        </div>
+    </td>
+</tr>                    
+{% endif %}
+    
+{% endfor %}
+<script>
+    $("*[data-get='form']").on('click',function(e){
+        e.preventDefault();
+        getForm($(this));
+        $('.modal').addClass('open-modal');
+    });
+    $('.open_modal-del').map(function () {
+        $(this).click(function (e) {
+            e.preventDefault();
+            pk = $(this).data('item_pk');
+            $('#modal-del-' + pk).addClass('open-modal');
+            $('#' + pk).click(function(e){
+                e.preventDefault();
+                url = $(this).attr('href');
+                getAjax(url, $('#services'));
+            })
+            $('.no-del-' + pk).click(function (e) {
+                $('#modal-del-' + pk).removeClass('open-modal');
+            });
+        });
+    });
+    $('.predefault').on('click', function(e){
+        e.preventDefault();
+    })
+</script>

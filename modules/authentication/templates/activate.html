@@ -1,0 +1,20 @@
+{% extends "login.html" %}
+
+{% block form-login %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <h1>АКТИВАЦИЯ</h1>
+        <p>На Ваш телефон отправленна ссылка для активации, перейдите по ней для продолжения</p>
+    </form>
+{% endblock form-login %}
+{% block registry-newuser %}
+  
+{% endblock registry-newuser %}
+{% block help-text %}
+  
+{% endblock help-text %}
+
+{% block logout %}
+    
+{% endblock logout %}
+    

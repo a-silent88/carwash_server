@@ -1,0 +1,61 @@
+{% extends "main.html" %}
+{% block title %}
+<div class="title">Оборудование</div>
+{% endblock title %}
+{% block content %}
+<div id="content">
+    
+    <div class="inner">
+        <div class="btn-action">
+            <a href="/terminals/add/" data-get='form' data-formId='form_terminal' class="btn terminal-add" title="Добавить терминал"><i class="fa fa-shower" aria-hidden="true"></i>+</a>
+            <form action="/terminals/search" method="get">
+                <input type="search" name="" id="" placeholder="Поиск терминала" >
+            </form>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="max-width: 20px">ID терминала</th>
+                    <th>Название</th>
+                    <th style="max-width: 40px">Баланс</th>
+                    <th style="max-width: 40px">Статус</th>
+                    <th style="max-width: 20px">IP адрес</th>
+                    <th style="max-width: 20px">Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for terminal in terminals %}
+                
+                {% if terminal.pk != 0 %}
+                <tr>
+                    <td>{{ terminal.terminalId }}</td>
+                    <td>{{ terminal.name }}</td>
+                    <td>{{ terminal.balance }} руб.</td>
+                    <td>{{ terminal.status }}</td>
+                    <td>{{ terminal.ipAddress }}</td>
+                    <td>
+                        <a href="/terminals/edit/{{terminal.pk}}" data-get='form' data-formId='form_terminal' style="color: #000" id="" class="" s><i class="far fa-edit" title="Редактировать"></i></a>
+                        <a href="#" style="color: red" data-item_pk="{{terminal.pk}}"class="open_modal-del"><i class="far fa-trash-alt" title="Удалить"></i></a>
+                        <div id="modal-del-{{terminal.pk}}" class="modal-del">
+                            Выходите удалить клиента?
+                            <div class="action">
+                                <a href="/terminals/del/{{terminal.pk}}" class='order_del' style="background: red; color: #fff;">да</a>
+                                <a href="#" class="no-del-{{terminal.pk}}" style="background: #7ecaa6; color: #fff;">нет</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>                    
+                {% endif %}
+                    
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="modal-add-terminal modal">
+        <div class="close-modal"><i class="fas fa-times-circle"></i></div>
+        <div class="title">Добавить нового терминал</div>
+        <div id="result"></div>
+    </div>
+</div>
+
+{% endblock content %}

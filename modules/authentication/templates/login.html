@@ -1,0 +1,40 @@
+{% extends "main.html" %}
+
+
+{% block logo %}
+<div class="logo"></div>
+{% endblock logo %}
+
+{% block content-iframe %}
+{% block content %}
+<div class="wrap left-120">
+    {% block menu-left %}
+    {% endblock menu-left %}
+    {% block help-text %}
+    <p><br></p>
+    {% endblock help-text %}
+
+    <section id="login">
+        <div class="right-form">
+            {% block form-login %}
+            <form action="" method="post">
+                {% csrf_token %}
+                <h2>Личный кабинет</h2>
+                <div class="before-name">
+                    {{form}}
+                </div>
+                <label><input type="checkbox"> запомнить меня</label>
+                <button class="yellow-btn">ВОЙТИ</button>
+            </form>
+            {% block registry-newuser %}
+            <a href="/signup" class='newuser'>Регистрация нового пользователя</a>
+            {% endblock registry-newuser %}
+            {% endblock form-login %}
+        </div>
+    </section>
+</div>
+{% endblock content %}
+{% endblock content-iframe %}
+{% block logout %}
+
+{% endblock logout %}

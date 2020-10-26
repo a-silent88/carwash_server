@@ -1,0 +1,12 @@
+<form action="" method="post" id="form_service">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" form='form_service' class="btn_green predefault post">сохранить</button>
+</form>
+
+<script>
+    $('.post').click(function(e){
+        e.preventDefault()
+        postForm($('#form_service'), $('#services'));
+    })
+</script>

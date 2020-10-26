@@ -1,0 +1,14 @@
+{% block menu-left %}
+{% if user.is_authenticated %}
+    <aside>
+        <ul class="menu">
+            <li><a href="/">Главная</a></li>
+            <li><a href="/terminals/">Оборудование</a></li>
+            <li><a href="/sessions_all/">Сессии</a></li>
+            <li><a href="/clients/">Клиенты</a></li>
+            <li><a href="/reports/">Отчеты</a></li>
+            <li><a href="/settings/">Настройка</a></li>
+        </ul>
+    </aside>
+{% endif %}
+{% endblock menu-left %}

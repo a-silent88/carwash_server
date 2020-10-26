@@ -1,0 +1,50 @@
+{% for session in sessions %}
+<tr>
+    <td>{{ session.sessionId }}</td>
+    <td>{{ session.terminalId }}</td>
+    <td>{{ session.service }}</td>
+    <td>{{ session.status }}</td>
+    <td>{{ session.balance }} руб.</td>
+    <td>
+        <a href="/sessions/edit/{{session.pk}}" data-get='form' data-formId='form_session' style="color: #000" class="" s><i class="far fa-edit" title="Редактировать"></i></a>
+        <a href="#" style="color: red" data-item_pk="{{session.pk}}"class="open_modal-del"><i class="far fa-trash-alt" title="Удалить"></i></a>
+        <div id="modal-del-{{session.pk}}" class="modal-del">
+            Выходите удалить клиента?
+            <div class="action">
+                <a href="/sessions/del/{{session.pk}}" class='order_del' style="background: red; color: #fff;">да</a>
+                <a href="#" class="no-del-{{session.pk}}" style="background: #7ecaa6; color: #fff;">нет</a>
+            </div>
+        </div>
+    </td>
+</tr>                       
+{% endfor %}
+<script>
+    $("*[data-get='form']").on('click',function(e){
+        e.preventDefault();
+        getForm($(this));
+        $('.modal').addClass('open-modal');
+        $('#' + pk).click(function(e){
+            e.preventDefault();
+            url = $(this).attr('href');
+            getAjax(url, $('#sessions'));
+        })
+    });
+    $('.open_modal-del').map(function () {
+        $(this).click(function (e) {
+            e.preventDefault();
+            pk = $(this).data('item_pk');
+            $('#modal-del-' + pk).addClass('open-modal');
+            $('#' + pk).click(function(e){
+                e.preventDefault();
+                url = $(this).attr('href');
+                getAjax(url, $('#services'));
+            })
+            $('.no-del-' + pk).click(function (e) {
+                $('#modal-del-' + pk).removeClass('open-modal');
+            });
+        });
+    });
+    $('.predefault').on('click', function(e){
+        e.preventDefault();
+    })
+</script>

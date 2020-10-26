@@ -1,0 +1,77 @@
+{% extends "main.html" %}
+{% block content %}
+<div class="title">
+    <h1>Список пользователей</h1>
+</div>
+
+<div id='order-list' class="order-list">
+    <div class="head-order-list">
+        <h2>Список сотрудников</h2>
+        <div class="btn-order">
+            <ul>
+                <li><a href="/user/?add=newuser" id="iframebox" class="iframebox order-add"><span>+</span>Сотрудник</a></li>
+                <!-- <li><a href="#" class='filter-order-list'>Фильтры</a></li> -->
+            </ul>
+            <div class="search-order">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <input type="search" name="search-order" id="search-order" placeholder="Поиск заказа"><i class='fas fa-search'></i>
+                    <button type="submit">Искать</button>
+                </form>
+            </div>
+        </div>
+        <div class="order-list-content">
+            <table>
+                <thead>
+                    <th>№</th>
+                    <th>Имя</th>
+                    <th>Фамилия</th>
+                    <th>Email</th>
+                    <th>Телефон</th>
+                    <th>Внутренний номер</th>
+                    <th>Профиль</th>
+                    <th>Web доступ</th>
+                    <th>Действия</th>
+                </thead>
+                <tbody>
+                    {% for users in users_list %}
+                    <tr>
+                        <td>{{users.pk}}</td>
+                        <td>{{users.first_name}}</td>
+                        <td>{{users.last_name}}</td>
+                        <td>{{users.email}}</td>
+                        <td>{{users.phone}}</td>
+                        <td>{{users.asterisk_number}}</td>
+                        <td>
+                            {% for group in users.groups.all %}
+                                <p>{{group}}</p>
+                            {% endfor %}
+                        </td>
+                        <td>                             
+                                {% if users.is_active == True %}
+                                    <p>Активен</p>
+                                {% endif %}   
+                                {% if users.is_active == False %}
+                                    <p style="color: red">Заблокирован</p>
+                                {% endif %}                                   
+                        </td>
+                        <td class="action">
+                            <a href="/user/{{users.pk}}" id="iframebox" class='iframebox' style="color: #000"><i class="far fa-edit" title="Удалить"></i></a>
+                            
+                            {% if users.is_superuser == False and users.pk != 44 %}
+                            <a href="/user/?delete={{users.pk}}" style="color: red"><i class="far fa-trash-alt" title="Удалить"></i></a>
+                            {% endif %}
+
+                            <a href="/user/?change_password={{users.pk}}" id="iframebox" class='iframebox' style="color: rgb(255, 174, 0)"><i class="fas fa-key" title="Изменить пароль"></i></a>
+                                
+                        </td>
+                    </tr>
+                    <td></td>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

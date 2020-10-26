@@ -1,0 +1,6 @@
+<form action="/terminals/?add" method="post" id="form_terminal">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" form='form_terminal' class="btn_green">сохранить</button>
+</form>
+

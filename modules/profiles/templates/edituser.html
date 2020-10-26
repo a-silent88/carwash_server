@@ -1,0 +1,23 @@
+{% extends "login.html" %}
+
+{% block form-login %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <h1>Введите данные пользователя</h1>
+        <input type="email" name="email" id="email" placeholder="{{email}}" value='{{email}}'>
+        <input type="text" name="first_name" id="first_name" placeholder="{{first_name}}" value='{{first_name}}'>
+        <input type="text" name="last_name" id="last_name" placeholder="{{last_name}}" value='{{last_name}}'>
+        <input type="text" name="phone" id="phone" placeholder="{{phone}}" value='{{phone}}'>
+        <input type="text" name="asterisk_number" id="asterisk_number" placeholder="{{asterisk_number}}" value='{{asterisk_number}}'>
+        <button type="submit" class="btn_green">сохранить</button>
+    </form>
+{% endblock form-login %}
+{% block registry-newuser %}
+  
+{% endblock registry-newuser %}
+{% block help-text %}
+  
+{% endblock help-text %}
+{% block logout %}
+    
+{% endblock logout %}

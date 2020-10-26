@@ -1,0 +1,5 @@
+    <form action="/user/?add=newuser" method="post" id="form_client">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" form='form_client' class="btn_green">сохранить</button>
+    </form>

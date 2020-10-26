@@ -1,0 +1,46 @@
+.stitches-sprite(@x: 0, @y: 0, @width: 0, @height: 0) {
+    background-position: @x @y;
+    width: @width;
+    height: @height;
+}
+
+.sprite {
+    background-image: url(../img/spritesheet.png);    background-repeat: no-repeat;
+    display: block;
+
+    &.sprite-cart {
+        .stitches-sprite(-3px, -3px, 43px, 43px);
+    }
+
+    &.sprite-geo {
+        .stitches-sprite(-52px, -3px, 23px, 33px);
+    }
+
+    &.sprite-menu {
+        .stitches-sprite(-81px, -3px, 26px, 22px);
+    }
+
+    &.sprite-phone {
+        .stitches-sprite(-113px, -3px, 26px, 26px);
+    }
+
+    &.sprite-phone-w {
+        .stitches-sprite(-145px, -3px, 30px, 30px);
+    }
+
+    &.sprite-phone2 {
+        .stitches-sprite(-181px, -3px, 27px, 27px);
+    }
+
+    &.sprite-search {
+        .stitches-sprite(-214px, -3px, 22px, 22px);
+    }
+
+    &.sprite-site {
+        .stitches-sprite(-242px, -3px, 32px, 32px);
+    }
+
+    &.sprite-time {
+        .stitches-sprite(-280px, -3px, 30px, 30px);
+    }
+}

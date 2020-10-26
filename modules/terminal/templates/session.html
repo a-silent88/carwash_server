@@ -1,0 +1,13 @@
+<form action="/sessions/add/" method="post" id="form_session">
+    {% csrf_token %}
+    <input type="hidden" name='path' value="{{ request.path }}">
+    {{form.as_p}}
+    <button type="submit" form='form_session' class="btn_green post">сохранить</button>
+</form>
+
+<script>
+    $('.post').click(function(e){
+        e.preventDefault()
+        postForm($('#form_session'), $('#sessions'));
+    })
+</script>
